@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.meslmawy.ibtkarchallenge.ui.HomeViewModel" />
+            type="com.meslmawy.ibtkarchallenge.presentation.main.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

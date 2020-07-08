@@ -1,11 +1,11 @@
-package com.meslmawy.ibtkarchallenge.ui
+package com.meslmawy.ibtkarchallenge.presentation.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.meslmawy.ibtkarchallenge.State
-import com.meslmawy.ibtkarchallenge.dto.AllPeopleResponse
-import com.meslmawy.ibtkarchallenge.repository.ChallengeRepositery
+import com.meslmawy.ibtkarchallenge.domain.dto.AllPeopleResponse
+import com.meslmawy.ibtkarchallenge.domain.repository.ChallengeRepositery
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 

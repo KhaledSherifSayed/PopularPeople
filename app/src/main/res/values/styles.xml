@@ -5,6 +5,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:windowActivityTransitions">true</item>
     </style>
 
     <style name="TextStyle" parent="@android:style/Widget.TextView">
