@@ -1,8 +1,14 @@
 package com.meslmawy.ibtkarchallenge.presentation.main
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.*
+import android.os.Environment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavDirections
@@ -10,6 +16,8 @@ import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
+import com.google.android.material.snackbar.Snackbar
+import com.meslmawy.ibtkarchallenge.MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE
 import com.meslmawy.ibtkarchallenge.R
 import com.meslmawy.ibtkarchallenge.State
 import com.meslmawy.ibtkarchallenge.databinding.FragmentHomeBinding
@@ -18,6 +26,7 @@ import com.meslmawy.ibtkarchallenge.presentation.adapters.PopularPeopleAdapter
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.io.File
 
 
 @ExperimentalCoroutinesApi
@@ -40,6 +49,7 @@ class HomeFragment : Fragment() {
         )
         setupAdapter()
         setupLiveData()
+        checkPermission()
         binding.swipeRefreshLayout.setOnRefreshListener {
             refreshAllPeople()
         }
@@ -113,4 +123,35 @@ class HomeFragment : Fragment() {
         currentDestination?.getAction(destination.actionId)
             ?.let { navigate(destination, extraInfo) }
     }
+
+    private fun checkPermission(){
+        val permissionCheck = activity?.let { ContextCompat.checkSelfPermission(it, Manifest.permission.WRITE_EXTERNAL_STORAGE) }
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            activity?.let {
+                requestPermissions(
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE
+                )
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>,
+        grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
+            if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            else
+                Snackbar.make(binding.root,
+                    R.string.storage_perm_msg,
+                    Snackbar.LENGTH_LONG
+                ).setAction(R.string.request) {
+                        checkPermission()
+                    }
+                    .show()
+        }
+    }
+
 }

@@ -2,6 +2,7 @@ package com.meslmawy.ibtkarchallenge.di
 
 import com.meslmawy.ibtkarchallenge.presentation.details.DetailsViewModel
 import com.meslmawy.ibtkarchallenge.presentation.main.HomeViewModel
+import com.meslmawy.ibtkarchallenge.presentation.photo.PhotoViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.viewmodel.dsl.viewModel
@@ -15,5 +16,8 @@ val viewModelModule = module {
     }
     viewModel {
         DetailsViewModel(get())
+    }
+    viewModel {
+        PhotoViewModel(get())
     }
 }

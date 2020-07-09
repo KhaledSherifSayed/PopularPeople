@@ -14,6 +14,8 @@ import android.widget.TextView
 import android.widget.TextView.BufferType
 
 
+const val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1200
+
 sealed class State<T> {
     class Loading<T> : State<T>()
 

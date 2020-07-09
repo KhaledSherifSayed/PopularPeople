@@ -5,4 +5,7 @@
     <string name="menu_radio">Radio</string>
     <string name="movies_list">Movies List</string>
     <string name="images_list">Images List</string>
+    <string name="storage_perm_msg">Please enable Storage Permission to enable to save Images </string>
+    <string name="request">Request</string>
+
 </resources>

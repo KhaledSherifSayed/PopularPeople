@@ -69,6 +69,17 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
+<!--        <LinearLayout-->
+<!--            android:id="@+id/bottom_sheet"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical"-->
+<!--            android:paddingStart="@dimen/spacing_mlarge"-->
+<!--            android:paddingTop="@dimen/margin_quar"-->
+<!--            android:paddingEnd="@dimen/spacing_mlarge"-->
+<!--            android:paddingBottom="@dimen/spacing_mlarge"-->
+<!--            app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -102,7 +113,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/detail_title"
                     expandableTextView:animDuration="200"
-                    expandableTextView:maxCollapsedLines="4">
+                    expandableTextView:maxCollapsedLines="2">
 
                     <TextView
                         android:id="@id/expandable_text"
@@ -159,8 +170,6 @@
                     android:id="@+id/images_picker"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:nestedScrollingEnabled="false"
                     android:padding="4dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
