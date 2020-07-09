@@ -3,6 +3,7 @@ package com.meslmawy.ibtkarchallenge.domain.repository
 import NetworkBoundRepository
 import com.meslmawy.ibtkarchallenge.State
 import com.meslmawy.ibtkarchallenge.data.api.ChallengeApiService
+import com.meslmawy.ibtkarchallenge.domain.dto.ActorDetails
 import com.meslmawy.ibtkarchallenge.domain.dto.AllPeopleResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -16,6 +17,12 @@ class ChallengeRepositery(private val apiService: ChallengeApiService) {
     fun getAllPopulars(): Flow<State<AllPeopleResponse>> {
         return object : NetworkBoundRepository<AllPeopleResponse>() {
             override suspend fun fetchFromRemote(): Response<AllPeopleResponse> = apiService.getAllPeople()
+        }.asFlow().flowOn(Dispatchers.IO)
+    }
+
+    fun getPersonInfo(id : Int): Flow<State<ActorDetails>> {
+        return object : NetworkBoundRepository<ActorDetails>() {
+            override suspend fun fetchFromRemote(): Response<ActorDetails> = apiService.getPersonInfo(id)
         }.asFlow().flowOn(Dispatchers.IO)
     }
 

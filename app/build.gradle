@@ -91,6 +91,7 @@ dependencies {
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
     // Glide
     implementation "com.github.bumptech.glide:glide:$version_glide"
+
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
     implementation "androidx.cardview:cardview:$version_card_view"
@@ -108,8 +109,6 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
     // CircleImageView
     implementation "de.hdodenhof:circleimageview:$circleImage_version"
-
-
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

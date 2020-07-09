@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="people"
-            type="com.meslmawy.ibtkarchallenge.dto.People" />
+            type="com.meslmawy.ibtkarchallenge.domain.dto.People" />
 
         <variable
             name="container"
@@ -50,11 +49,11 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:scaleType="centerCrop"
-                        app:layout_constraintDimensionRatio="1:1.2"
+                        app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:loadImage="@{people.profile_path}" />
+                        app:loadImage="@{people.profile_path}"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -65,12 +64,20 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/detail_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:layout_collapseMode="pin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="21dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -95,7 +102,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{people.description}"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                     android:textColor="@color/white_87"
                     android:textStyle="italic"
@@ -105,9 +111,7 @@
                     tools:text="Zootopia" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.core.widget.NestedScrollView>
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

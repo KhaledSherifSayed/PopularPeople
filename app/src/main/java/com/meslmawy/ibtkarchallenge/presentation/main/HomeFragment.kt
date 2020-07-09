@@ -1,9 +1,9 @@
 package com.meslmawy.ibtkarchallenge.presentation.main
 
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -12,7 +12,6 @@ import com.meslmawy.ibtkarchallenge.State
 import com.meslmawy.ibtkarchallenge.databinding.HomeFragmentBinding
 import com.meslmawy.ibtkarchallenge.presentation.adapters.PeopleClick
 import com.meslmawy.ibtkarchallenge.presentation.adapters.PopularPeopleAdapter
-import com.meslmawy.ibtkarchallenge.ui.main.HomeFragmentDirections
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -21,11 +20,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
 class HomeFragment : Fragment() {
-
-    companion object {
-        fun newInstance() =
-            HomeFragment()
-    }
 
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding: HomeFragmentBinding
@@ -88,11 +82,4 @@ class HomeFragment : Fragment() {
     private fun refreshAllPeople(){
         viewModel.getPopularPeople()
     }
-
-
-    private fun setSharedElementTransitionOnEnter() {
-        sharedElementEnterTransition = TransitionInflater.from(context)
-            .inflateTransition(R.transition.shared_element_transition)
-    }
-
 }
