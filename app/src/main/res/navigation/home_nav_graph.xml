@@ -20,13 +20,31 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.meslmawy.ibtkarchallenge.presentation.details.DetailsFragment"
-        android:label="DetailsFragment">
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_details">
         <argument
             android:name="people"
             app:argType="com.meslmawy.ibtkarchallenge.domain.dto.People" />
         <argument
             android:name="picture"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailsFragment_to_photoFragment"
+            app:destination="@id/photoFragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/photoFragment"
+        android:name="com.meslmawy.ibtkarchallenge.presentation.photo.PhotoFragment"
+        android:label="PhotoFragment"
+        tools:layout="@layout/fragment_photo">
+        <argument
+            android:name="Image"
+            app:argType="com.meslmawy.ibtkarchallenge.domain.dto.PersonImage" />
+        <argument
+            android:name="picture"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 </navigation>

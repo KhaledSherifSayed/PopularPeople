@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="people"
             type="com.meslmawy.ibtkarchallenge.domain.dto.People" />
@@ -53,14 +54,7 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:loadImage="@{people.realProfilePath}"/>
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        app:layout_constraintBottom_toBottomOf="@id/profile_detail_background"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_detail_background" />
+                        app:loadImage="@{people.realProfilePath}" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -71,14 +65,17 @@
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                     app:layout_collapseMode="pin"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="21dp"
+            android:paddingStart="@dimen/spacing_mlarge"
+            android:paddingTop="@dimen/margin_quar"
+            android:paddingEnd="@dimen/spacing_mlarge"
+            android:paddingBottom="@dimen/spacing_mlarge"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,44 +88,85 @@
                     android:layout_height="wrap_content"
                     android:text="@{people.name}"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:textSize="28sp"
+                    android:textSize="@dimen/textsize_xxxlarge"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Zootopia" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/detail_description"
-                    android:layout_width="wrap_content"
+                <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/expand_text_view"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                    android:textColor="@color/white_87"
-                    android:textStyle="italic"
+                    android:layout_marginTop="5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/detail_title"
-                    tools:text="Zootopia" />
+                    expandableTextView:animDuration="200"
+                    expandableTextView:maxCollapsedLines="4">
+
+                    <TextView
+                        android:id="@id/expandable_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        android:textColor="@color/white_87"
+                        android:textStyle="italic" />
+
+                    <ImageButton
+                        android:id="@id/expand_collapse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|bottom"
+                        android:background="@android:color/transparent"
+                        android:padding="16dp" />
+
+                </com.ms.square.android.expandabletextview.ExpandableTextView>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/moviesListText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:text="@string/movies_list"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                     android:textColor="@color/white_87"
-                    android:text="@string/movies_list"
-                    android:textSize="28sp"
+                    android:textSize="@dimen/textsize_xxxlarge"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/detail_description" />
+                    app:layout_constraintTop_toBottomOf="@+id/expand_text_view" />
+
                 <com.yarolegovich.discretescrollview.DiscreteScrollView
-                    android:id="@+id/picker"
+                    android:id="@+id/movies_picker"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="180dp"
+                    android:nestedScrollingEnabled="false"
                     app:dsv_orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/moviesListText"/>
+                    app:layout_constraintTop_toBottomOf="@+id/moviesListText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/imageListText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/images_list"
+                    android:textColor="@color/white_87"
+                    android:textSize="@dimen/textsize_xxxlarge"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movies_picker" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:padding="4dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageListText"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_image" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

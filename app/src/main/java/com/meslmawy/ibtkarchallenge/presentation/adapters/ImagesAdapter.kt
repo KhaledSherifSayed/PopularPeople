@@ -1,18 +1,17 @@
 package com.meslmawy.ibtkarchallenge.presentation.adapters
 
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.meslmawy.ibtkarchallenge.databinding.ItemPeopleBinding
-import com.meslmawy.ibtkarchallenge.domain.dto.People
+import com.meslmawy.ibtkarchallenge.databinding.ItemImageBinding
+import com.meslmawy.ibtkarchallenge.domain.dto.PersonImage
 
 
-class PopularPeopleAdapter(val callback: PeopleClick) :
-    ListAdapter<People, PopularPeopleAdapter.PeopleViewHolder>(DiffCallback) {
-
+class ImagesAdapter(val callback: ImageClick) : ListAdapter<PersonImage, ImagesAdapter.ImagesViewHolder>(DiffCallback) {
 
     /**
      * Callback for calculating the diff between two non-null items in a list.
@@ -20,35 +19,34 @@ class PopularPeopleAdapter(val callback: PeopleClick) :
      * Used by ListAdapter to calculate the minumum number of changes between and old list and a new
      * list that's been passed to `submitList`.
      */
-    companion object DiffCallback : DiffUtil.ItemCallback<People>() {
-        override fun areItemsTheSame(oldItem: People, newItem: People): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<PersonImage>() {
+        override fun areItemsTheSame(oldItem: PersonImage, newItem: PersonImage): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: People, newItem: People): Boolean {
-            return newItem.id == oldItem.id
+        override fun areContentsTheSame(oldItem: PersonImage, newItem: PersonImage): Boolean {
+            return newItem.file_path == oldItem.file_path
         }
     }
 
     /**
      * ViewHolder for Groups items. All work is done by data binding.
      */
-    class PeopleViewHolder(val viewDataBinding: ItemPeopleBinding) :
+    class ImagesViewHolder(val viewDataBinding: ItemImageBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
-
-        fun bind(listener: PeopleClick, people: People) {
-            viewDataBinding.people = people
-            viewDataBinding.cardview = viewDataBinding.itemContainer
-            viewDataBinding.cardview?.transitionName = people.realProfilePath
-            viewDataBinding.peopleclick = listener
+        fun bind(listener: ImageClick,image: PersonImage) {
+            viewDataBinding.personImage = image
+            viewDataBinding.image = viewDataBinding.imageConatiner
+            viewDataBinding.image?.transitionName = image.file_path
+            viewDataBinding.imageclick = listener
             viewDataBinding.executePendingBindings()
         }
 
         companion object {
-            fun from(parent: ViewGroup): PeopleViewHolder {
+            fun from(parent: ViewGroup): ImagesViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ItemPeopleBinding.inflate(layoutInflater, parent, false)
-                return PeopleViewHolder(binding)
+                val binding = ItemImageBinding.inflate(layoutInflater, parent, false)
+                return ImagesViewHolder(binding)
             }
         }
     }
@@ -59,8 +57,8 @@ class PopularPeopleAdapter(val callback: PeopleClick) :
      * A ViewHolder holds a view for the [RecyclerView] as well as providing additional information
      * to the RecyclerView such as where on the screen it was last drawn during scrolling.
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleViewHolder {
-        return PeopleViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder {
+        return ImagesViewHolder.from(parent)
     }
 
     /**
@@ -70,20 +68,21 @@ class PopularPeopleAdapter(val callback: PeopleClick) :
      * may have been set previously.
      */
 
-    override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
         holder.viewDataBinding.also {
-            holder.bind(callback, getItem(position))
+            holder.bind(callback,getItem(position))
         }
     }
 }
 
+
 /**
  * Click listener for Groups. By giving the block a name it helps a reader understand what it does.
  */
-class PeopleClick(val block: (People,View) -> Unit) {
+class ImageClick(val block: (PersonImage, View) -> Unit) {
     /**
      * Called when a video is clicked
      * @param video the video that was clicked
      */
-    fun onClick(people: People, view: View) = block(people,view)
+    fun onClick(personImage: PersonImage, view: View) = block(personImage,view)
 }

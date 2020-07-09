@@ -1,9 +1,17 @@
 package com.meslmawy.ibtkarchallenge
 
 import android.content.Context
-import android.location.Location
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.text.Html
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.view.View
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
+import android.widget.TextView
+import android.widget.TextView.BufferType
 
 
 sealed class State<T> {
@@ -34,7 +42,6 @@ fun isNetworkAvailable(context: Context): Boolean? {
     return isConnected
 }
 
-
-
-
-
+fun image_path(string: String) : String {
+    return "https://image.tmdb.org/t/p/w500/$string"
+}

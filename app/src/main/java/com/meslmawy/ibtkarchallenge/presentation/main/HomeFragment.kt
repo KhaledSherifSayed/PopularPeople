@@ -55,9 +55,13 @@ class HomeFragment : Fragment() {
     private fun setupAdapter(){
         peopelAdapter = PopularPeopleAdapter(PeopleClick { it,view ->
             val extraInfoForSharedElement = FragmentNavigatorExtras(
-                view to it.realProfilePath
+                (view to it.realProfilePath)
             )
-            val toDetailsFragment = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it,it.realProfilePath)
+            val toDetailsFragment = it.realProfilePath.let { it1 ->
+                HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it,
+                    it1
+                )
+            }
             navigate(toDetailsFragment, extraInfoForSharedElement)
         })
         // Sets the adapter of the RecyclerView

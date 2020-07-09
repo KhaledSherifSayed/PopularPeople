@@ -8,19 +8,23 @@
 
     <data>
         <variable
-            name="movie"
-            type="com.meslmawy.ibtkarchallenge.domain.dto.Movies" />
+            name="personImage"
+            type="com.meslmawy.ibtkarchallenge.domain.dto.PersonImage" />
+
+        <variable
+            name="image"
+            type="androidx.cardview.widget.CardView" />
+
+        <variable
+            name="imageclick"
+            type="com.meslmawy.ibtkarchallenge.presentation.adapters.ImageClick" />
 
     </data>
-    <RelativeLayout
-        android:id="@+id/card_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/spacing_xlarge">
-
         <androidx.cardview.widget.CardView
-            android:id="@+id/movie_container"
-            android:layout_width="200dp"
+            android:id="@+id/image_conatiner"
+            android:layout_width="150dp"
+            android:paddingBottom="@dimen/spacing_xlarge"
+            android:onClick="@{() -> imageclick.onClick(personImage,image)}"
             android:layout_height="wrap_content"
             app:cardUseCompatPadding="true"
             app:cardBackgroundColor="@color/white"
@@ -37,27 +41,13 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/item_poster_post"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="150dp"
                     android:scaleType="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:loadImage="@{movie.realBackDrobPath}" />
+                    app:loadImage="@{personImage.real_path}" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/item_poster_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:padding="4dp"
-                    android:gravity="center"
-                    app:loadName="@{movie}"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/item_poster_post"
-                    tools:text="Zootopia" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-    </RelativeLayout>
 </layout>

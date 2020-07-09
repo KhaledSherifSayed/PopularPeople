@@ -4,4 +4,5 @@
     <string name="menu_library">Library</string>
     <string name="menu_radio">Radio</string>
     <string name="movies_list">Movies List</string>
+    <string name="images_list">Images List</string>
 </resources>

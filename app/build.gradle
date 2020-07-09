@@ -111,6 +111,7 @@ dependencies {
     implementation "de.hdodenhof:circleimageview:$circleImage_version"
     // discrete scroll view
     implementation 'com.yarolegovich:discrete-scrollview:1.4.9'
+    implementation 'com.ms-square:expandableTextView:0.1.4'
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
