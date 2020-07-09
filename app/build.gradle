@@ -109,6 +109,9 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
     // CircleImageView
     implementation "de.hdodenhof:circleimageview:$circleImage_version"
+    // discrete scroll view
+    implementation 'com.yarolegovich:discrete-scrollview:1.4.9'
+
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import com.meslmawy.ibtkarchallenge.R
 import com.meslmawy.ibtkarchallenge.State
-import com.meslmawy.ibtkarchallenge.databinding.HomeFragmentBinding
+import com.meslmawy.ibtkarchallenge.databinding.FragmentHomeBinding
 import com.meslmawy.ibtkarchallenge.presentation.adapters.PeopleClick
 import com.meslmawy.ibtkarchallenge.presentation.adapters.PopularPeopleAdapter
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -25,14 +25,14 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModel()
-    private lateinit var binding: HomeFragmentBinding
+    private lateinit var binding: FragmentHomeBinding
     private var peopelAdapter: PopularPeopleAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = HomeFragmentBinding.inflate(inflater)
+        binding = FragmentHomeBinding.inflate(inflater)
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
         binding.swipeRefreshLayout.setColorSchemeResources(

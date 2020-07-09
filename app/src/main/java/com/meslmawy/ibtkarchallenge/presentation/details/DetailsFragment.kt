@@ -1,33 +1,24 @@
 package com.meslmawy.ibtkarchallenge.presentation.details
 
-import android.app.Person
-import android.content.Context
-import android.graphics.drawable.Drawable
+
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.transition.TransitionInflater
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
-import com.google.android.material.transition.platform.MaterialArcMotion
-import com.google.android.material.transition.platform.MaterialContainerTransform
 import com.meslmawy.ibtkarchallenge.R
 import com.meslmawy.ibtkarchallenge.State
-import com.meslmawy.ibtkarchallenge.databinding.DetailsFragmentBinding
+import com.meslmawy.ibtkarchallenge.databinding.FragmentDetailsBinding
 import com.meslmawy.ibtkarchallenge.domain.dto.ActorDetails
+import com.meslmawy.ibtkarchallenge.domain.dto.Movies
 import com.meslmawy.ibtkarchallenge.domain.dto.People
+import com.meslmawy.ibtkarchallenge.presentation.adapters.MoviesAdapter
+import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -39,19 +30,22 @@ class DetailsFragment : Fragment() {
 
     private val viewModel: DetailsViewModel by viewModel()
     private val args: DetailsFragmentArgs by navArgs()
-    private lateinit var binding: DetailsFragmentBinding
-    var peopleVal: People? = null
+    private lateinit var binding: FragmentDetailsBinding
+    private var peopleVal: People? = null
+    private var moviesList: List<Movies>? = null
+    private var moviesAdapter : MoviesAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DetailsFragmentBinding.inflate(inflater)
+        binding = FragmentDetailsBinding.inflate(inflater)
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
         // recieved argums
         peopleVal = args.people
+        moviesList = peopleVal?.known_for
         (activity as AppCompatActivity?)!!.setSupportActionBar(binding.detailToolbar)
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         binding.apply {
@@ -60,6 +54,7 @@ class DetailsFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar!!.setTitle(peopleVal?.name)
         setupLiveData()
         getPersonInfo(peopleVal!!.id)
+        displayMoviesList()
         return binding.root
     }
 
@@ -83,7 +78,7 @@ class DetailsFragment : Fragment() {
         return item.onNavDestinationSelected(findNavController()) || super.onOptionsItemSelected(item)
     }
 
-   fun getPersonInfo(id : Int){
+   private fun getPersonInfo(id : Int){
      viewModel.getPersonInfo(id)
     }
 
@@ -101,7 +96,15 @@ class DetailsFragment : Fragment() {
         })
     }
 
-    fun updateDesign(person: ActorDetails){
+    private fun displayMoviesList(){
+        moviesAdapter = MoviesAdapter()
+        moviesAdapter?.submitList(moviesList)
+        binding.picker.adapter = moviesAdapter
+        binding.picker.setItemTransitionTimeMillis(500)
+        binding.picker.setItemTransformer(ScaleTransformer.Builder().setMinScale(0.8f).build())
+    }
+
+    private fun updateDesign(person: ActorDetails){
         binding.detailDescription.text =  person.biography
     }
 }

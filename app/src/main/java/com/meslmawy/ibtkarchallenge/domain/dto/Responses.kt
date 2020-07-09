@@ -28,20 +28,25 @@ data class People(
 
 @Parcelize
 data class Movies(
-    val original_name: String? = null,
-    val vote_count: Int? = null,
-    val poster_path: String? = null,
-    val media_type: String? = null,
-    val name: String? = null,
-    val vote_average: Double? = null,
     val id: Int? = null,
-    val first_air_date: String? = null,
-    val original_language: String? = null,
+    val release_date: String? = null,
+    val vote_count: Int? = null,
+    val vote_average: Double? = null,
+    val title : String?=null,
+    val original_title : String?=null,
+    val original_language : String?=null,
     val genre_ids: List<Int>? = null,
-    val backdrop_path: String? = null,
+    val media_type: String? = null,
+    val poster_path: String? = null,
     val overview: String? = null,
+    val original_name: String? = null,
+    val backdrop_path: String? = null,
     val origin_country: List<String>? = null
-) : Parcelable
+) : Parcelable {
+    val realProfilePath = "https://image.tmdb.org/t/p/w500/$poster_path"
+    val realBackDrobPath = "https://image.tmdb.org/t/p/w500/$backdrop_path"
+
+}
 
 
 @Parcelize
