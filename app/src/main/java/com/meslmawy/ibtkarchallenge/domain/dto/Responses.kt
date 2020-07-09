@@ -1,6 +1,7 @@
 package com.meslmawy.ibtkarchallenge.domain.dto
 
 import android.os.Parcelable
+import android.provider.MediaStore
 import kotlinx.android.parcel.Parcelize
 
 
@@ -65,4 +66,20 @@ data class ActorDetails(
     val adult: Boolean? = null,
     val imdb_id: String? = null,
     val homepage: String? = null
+) : Parcelable
+
+@Parcelize
+data class AllImagesResponse(
+    val profiles: List<PersonImage>? = null,
+    val id  :Int?= null
+) : Parcelable
+
+@Parcelize
+data class PersonImage(
+    val width : Int?= null,
+    val height : Int?= null,
+    val vote_count : Int?= null,
+    val vote_average: Double? = null,
+    val file_path: String? = null,
+    val aspect_ratio: Double? = null
 ) : Parcelable

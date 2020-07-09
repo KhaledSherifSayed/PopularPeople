@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_wide">16dp</dimen>
+    <dimen name="margin_half">8dp</dimen>
+    <dimen name="margin_quar">4dp</dimen>
+    <dimen name="textsize_xxsmall">10sp</dimen>
+    <dimen name="textsize_xsmall">12sp</dimen>
+    <dimen name="textsize_small">14sp</dimen>
+    <dimen name="textsize_medium">15sp</dimen>
+    <dimen name="textsize_xmedium">16sp</dimen>
+    <dimen name="textsize_middle">17sp</dimen>
+    <dimen name="textsize_large">18sp</dimen>
+    <dimen name="textsize_smlarge">20sp</dimen>
+    <dimen name="textsize_mlarge">22sp</dimen>
+    <dimen name="textsize_mxlarge">23sp</dimen>
+    <dimen name="textsize_xlarge">24sp</dimen>
+    <dimen name="textsize_xmlarge">25sp</dimen>
+    <dimen name="textsize_xxlarge">26sp</dimen>
+    <dimen name="textsize_xxxlarge">27sp</dimen>
+    <dimen name="box_text_size">24sp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="custom_marker_image">50dp</dimen>
+    <dimen name="custom_marker_padding">2dp</dimen>
+
+    <dimen name="spacing_xxsmall">1dp</dimen>
+    <dimen name="spacing_xsmall">2dp</dimen>
+    <dimen name="spacing_small">3dp</dimen>
+    <dimen name="spacing_medium">5dp</dimen>
+    <dimen name="spacing_xmedium">7dp</dimen>
+    <dimen name="spacing_middle">10dp</dimen>
+    <dimen name="spacing_large">15dp</dimen>
+    <dimen name="spacing_smlarge">18dp</dimen>
+    <dimen name="spacing_mlarge">20dp</dimen>
+    <dimen name="spacing_mxlarge">25dp</dimen>
+    <dimen name="spacing_xlarge">35dp</dimen>
+    <dimen name="spacing_xmlarge">40dp</dimen>
+    <dimen name="spacing_xxlarge">50dp</dimen>
+    <dimen name="spacing_xxxlarge">55dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+</resources>
