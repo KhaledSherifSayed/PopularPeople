@@ -3,10 +3,13 @@ package com.meslmawy.ibtkarchallenge.presentation.main
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionInflater
 import com.meslmawy.ibtkarchallenge.R
 import com.meslmawy.ibtkarchallenge.State
 import com.meslmawy.ibtkarchallenge.databinding.HomeFragmentBinding
@@ -43,16 +46,27 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setExitToFullScreenTransition()
+        setReturnFromFullScreenTransition()
+    }
+
     private fun setupAdapter(){
-        peopelAdapter = PopularPeopleAdapter(PeopleClick {
-            this.findNavController().navigate(
-                HomeFragmentDirections.actionHomeFragmentToDetailsFragment(
-                    it
-                )
+        peopelAdapter = PopularPeopleAdapter(PeopleClick { it,view ->
+            val extraInfoForSharedElement = FragmentNavigatorExtras(
+                view to it.realProfilePath
             )
+            val toDetailsFragment = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it,it.realProfilePath)
+            navigate(toDetailsFragment, extraInfoForSharedElement)
         })
         // Sets the adapter of the RecyclerView
         binding.peoplesItems.adapter = peopelAdapter
+        postponeEnterTransition()
+        binding.peoplesItems.viewTreeObserver.addOnPreDrawListener {
+            startPostponedEnterTransition()
+            true
+        }
     }
 
     private fun setupLiveData(){
@@ -81,5 +95,18 @@ class HomeFragment : Fragment() {
 
     private fun refreshAllPeople(){
         viewModel.getPopularPeople()
+    }
+
+    private fun setExitToFullScreenTransition() {
+        exitTransition = TransitionInflater.from(context).inflateTransition(R.transition.doggo_list_exit_transition)
+    }
+
+    private fun setReturnFromFullScreenTransition() {
+        reenterTransition = TransitionInflater.from(context).inflateTransition(R.transition.doggo_list_return_transition)
+    }
+
+    private fun navigate(destination: NavDirections, extraInfo: FragmentNavigator.Extras) = with(findNavController()) {
+        currentDestination?.getAction(destination.actionId)
+            ?.let { navigate(destination, extraInfo) }
     }
 }

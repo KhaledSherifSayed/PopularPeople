@@ -18,11 +18,13 @@ data class People(
     val popularity: Double? = null,
     val known_for_department: String? = null,
     val gender: Int? = null,
-    val profile_path: String? = null,
+    val profile_path: String,
     val adult: Boolean? = null,
     val description: String? = null,
     val known_for: List<Movies>? = null
-) : Parcelable
+) : Parcelable {
+    val realProfilePath = "https://image.tmdb.org/t/p/w500/$profile_path"
+}
 
 @Parcelize
 data class Movies(

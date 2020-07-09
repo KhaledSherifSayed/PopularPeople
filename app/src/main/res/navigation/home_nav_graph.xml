@@ -24,6 +24,9 @@
         <argument
             android:name="people"
             app:argType="com.meslmawy.ibtkarchallenge.domain.dto.People" />
+        <argument
+            android:name="picture"
+            app:argType="string" />
     </fragment>
 
 </navigation>

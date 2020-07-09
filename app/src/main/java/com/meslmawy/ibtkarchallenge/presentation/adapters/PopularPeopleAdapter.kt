@@ -1,7 +1,9 @@
 package com.meslmawy.ibtkarchallenge.presentation.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,9 +12,7 @@ import com.meslmawy.ibtkarchallenge.domain.dto.People
 
 
 class PopularPeopleAdapter(val callback: PeopleClick) :
-    ListAdapter<People, PopularPeopleAdapter.PeopleViewHolder>(
-        DiffCallback
-    ) {
+    ListAdapter<People, PopularPeopleAdapter.PeopleViewHolder>(DiffCallback) {
 
 
     /**
@@ -39,9 +39,9 @@ class PopularPeopleAdapter(val callback: PeopleClick) :
 
         fun bind(listener: PeopleClick, people: People) {
             viewDataBinding.people = people
+            viewDataBinding.cardview = viewDataBinding.itemContainer
+            viewDataBinding.cardview?.transitionName = people.realProfilePath
             viewDataBinding.peopleclick = listener
-            // This is important, because it forces the data binding to execute immediately,
-            // which allows the RecyclerView to make the correct view size measurements
             viewDataBinding.executePendingBindings()
         }
 
@@ -74,7 +74,6 @@ class PopularPeopleAdapter(val callback: PeopleClick) :
     override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) {
         holder.viewDataBinding.also {
             holder.bind(callback, getItem(position))
-
         }
     }
 }
@@ -82,10 +81,10 @@ class PopularPeopleAdapter(val callback: PeopleClick) :
 /**
  * Click listener for Groups. By giving the block a name it helps a reader understand what it does.
  */
-class PeopleClick(val block: (People) -> Unit) {
+class PeopleClick(val block: (People,View) -> Unit) {
     /**
      * Called when a video is clicked
      * @param video the video that was clicked
      */
-    fun onClick(people: People) = block(people)
+    fun onClick(people: People, view: View) = block(people,view)
 }
