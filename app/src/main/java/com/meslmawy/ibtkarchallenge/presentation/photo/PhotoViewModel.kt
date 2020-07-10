@@ -37,10 +37,7 @@ class PhotoViewModel(val repository: ChallengeRepositery) : ViewModel() {
     fun checkFolderExist() {
         val sdDirectory =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-        val direct = File(
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                .toString() + File.separator + "PopularImagesWallper"
-        )
+        val direct = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() + File.separator + "PopularImagesWallper")
         if (!direct.exists()) {
             val wallpaperDirectory = File(sdDirectory, "PopularImagesWallper")
             wallpaperDirectory.mkdirs()

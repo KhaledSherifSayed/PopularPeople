@@ -3,15 +3,6 @@ package com.meslmawy.ibtkarchallenge
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import android.text.Html
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
-import android.view.View
-import android.view.ViewTreeObserver.OnGlobalLayoutListener
-import android.widget.TextView
-import android.widget.TextView.BufferType
 
 
 const val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1200
