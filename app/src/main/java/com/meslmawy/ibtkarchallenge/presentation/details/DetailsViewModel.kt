@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.meslmawy.ibtkarchallenge.State
 import com.meslmawy.ibtkarchallenge.domain.dto.ActorDetails
 import com.meslmawy.ibtkarchallenge.domain.dto.AllImagesResponse
-import com.meslmawy.ibtkarchallenge.domain.dto.AllPeopleResponse
 import com.meslmawy.ibtkarchallenge.domain.repository.ChallengeRepositery
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect

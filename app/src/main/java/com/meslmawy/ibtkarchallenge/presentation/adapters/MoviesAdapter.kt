@@ -2,8 +2,6 @@ package com.meslmawy.ibtkarchallenge.presentation.adapters
 
 import com.meslmawy.ibtkarchallenge.databinding.ItemMovieBinding
 import com.meslmawy.ibtkarchallenge.domain.dto.Movies
-
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
