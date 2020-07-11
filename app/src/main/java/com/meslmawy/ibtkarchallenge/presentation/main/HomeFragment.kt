@@ -65,9 +65,7 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater)
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
-        binding.swipeRefreshLayout.setColorSchemeResources(
-            R.color.colorPrimary
-        )
+        binding.swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary)
         setupAdapter()
         setupLiveData()
         checkPermission()

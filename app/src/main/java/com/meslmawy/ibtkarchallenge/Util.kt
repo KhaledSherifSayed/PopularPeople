@@ -30,6 +30,7 @@ import android.net.NetworkInfo
 const val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1200
 
 sealed class State<T> {
+
     class Loading<T> : State<T>()
 
     data class Success<T>(val data: T) : State<T>()
@@ -41,7 +42,6 @@ sealed class State<T> {
 
         fun <T> success(data: T) = Success(data)
 
-
         fun <T> error(message: String) = Error<T>(message)
     }
 }
@@ -49,8 +49,7 @@ sealed class State<T> {
 
 fun isNetworkAvailable(context: Context): Boolean? {
     var isConnected: Boolean? = false // Initial Value
-    val connectivityManager =
-        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
     if (activeNetwork != null && activeNetwork.isConnected)
         isConnected = true

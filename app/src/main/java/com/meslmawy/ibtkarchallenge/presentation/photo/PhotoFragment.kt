@@ -142,8 +142,14 @@ class PhotoFragment : Fragment() {
     private fun setupLiveData() {
         viewModel.imageFound.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
-                true -> binding.fab.setImageResource(R.drawable.ic_delete)
-                false -> binding.fab.setImageResource(R.drawable.ic_add)
+                true -> {
+                    binding.fab.setImageResource(R.drawable.ic_delete)
+                    binding.fab.tag = R.drawable.ic_delete
+                }
+                false -> {
+                    binding.fab.tag = R.drawable.ic_add
+                    binding.fab.setImageResource(R.drawable.ic_add)
+                }
             }
         })
     }
