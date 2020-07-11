@@ -14,7 +14,7 @@
 
 **Popular People** is a sample  Android application 📱 showing stars of the world 👓 built to demonstrate use of *Modern Android development* tools. Dedicated to all Android Developers with ❤️. 
 
-***You can Install and test latest Foodium app from below 👇***
+***You can Install and test latest Popular People app from below 👇***
 
 [![Popular People App](https://img.shields.io/badge/Popular👓-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/KhaledSherifSayed/PopularPeople/releases/latest/download/popular_people.apk)
 
@@ -58,6 +58,7 @@ It simply loads **Popular People** data from API.Peoples will be always loaded f
 Unit Tests verify the interactions of viewmodels between repositories and dao & REST api requests.
 - [Robolectric](https://github.com/robolectric/robolectric) - Robolectric is the industry-standard unit testing framework for Android.
 - [Mockito-Kotlin](https://github.com/nhaarman/mockito-kotlin) - a small library that provides helper functions to work with Mockito in Kotlin.
+
 
 <p align="center">
   <img src="Preview/tests.PNG" width="100%" height="350"/>
