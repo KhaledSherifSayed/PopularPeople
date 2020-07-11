@@ -1,11 +1,8 @@
 package com.meslmawy.ibtkarchallenge.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.Observer
 import com.meslmawy.ibtkarchallenge.MainCoroutinesRule
-import com.meslmawy.ibtkarchallenge.State
 import com.meslmawy.ibtkarchallenge.data.api.ChallengeApiService
-import com.meslmawy.ibtkarchallenge.domain.dto.AllPeopleResponse
 import com.meslmawy.ibtkarchallenge.domain.repository.ChallengeRepositery
 import com.meslmawy.ibtkarchallenge.getOrAwaitValue
 import com.meslmawy.ibtkarchallenge.presentation.main.HomeViewModel

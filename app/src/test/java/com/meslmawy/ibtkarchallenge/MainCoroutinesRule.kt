@@ -29,7 +29,7 @@ import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
 @ExperimentalCoroutinesApi
-class MainCoroutinesRule : TestRule, TestCoroutineScope by TestCoroutineScope() {
+ class MainCoroutinesRule : TestRule, TestCoroutineScope by TestCoroutineScope() {
 
   private val testCoroutinesDispatcher = TestCoroutineDispatcher()
 

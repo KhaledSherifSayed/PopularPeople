@@ -40,7 +40,7 @@ class IbatkarApiServiceTest : ApiAbstract<ChallengeApiService>() {
 
     @Throws(IOException::class)
     @Test
-    fun fetchPopularPeopleListTest() {
+    fun fetchPopularPeopleListTest()   {
         enqueueResponse("/PopularPeoPleResponse.json")
         allPeopleResponse = requireNotNull(service.getAllPeopleTest().execute().body())
         mockWebServer.takeRequest()

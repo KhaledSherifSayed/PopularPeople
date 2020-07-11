@@ -21,6 +21,7 @@ import com.meslmawy.ibtkarchallenge.domain.dto.ActorDetails
 import com.meslmawy.ibtkarchallenge.domain.dto.Movies
 import com.meslmawy.ibtkarchallenge.domain.dto.People
 import com.meslmawy.ibtkarchallenge.domain.dto.PersonImage
+import com.meslmawy.ibtkarchallenge.presentation.MainActivity
 import com.meslmawy.ibtkarchallenge.presentation.adapters.*
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -82,9 +83,12 @@ class DetailsFragment : Fragment() {
         binding.apply {
             this.people = peopleVal
         }
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.detailToolbar)
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setTitle(peopleVal?.name)
+        if(requireActivity() is MainActivity){
+            (activity as AppCompatActivity?)!!.setSupportActionBar(binding.detailToolbar)
+            (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            (activity as AppCompatActivity?)!!.supportActionBar!!.setTitle(peopleVal?.name)
+        }
+
     }
 
 
