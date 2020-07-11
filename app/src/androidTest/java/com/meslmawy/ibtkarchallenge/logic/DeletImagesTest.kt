@@ -26,10 +26,8 @@ import android.os.Bundle
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
-import com.meslmawy.ibtkarchallenge.domain.dto.People
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.junit.Test
@@ -38,7 +36,6 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import com.meslmawy.ibtkarchallenge.R
 import com.meslmawy.ibtkarchallenge.domain.dto.PersonImage
-import com.meslmawy.ibtkarchallenge.presentation.details.DetailsFragment
 import com.meslmawy.ibtkarchallenge.presentation.photo.PhotoFragment
 import org.hamcrest.CoreMatchers
 

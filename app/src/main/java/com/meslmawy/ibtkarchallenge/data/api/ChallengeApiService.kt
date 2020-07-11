@@ -22,33 +22,35 @@
 
 package com.meslmawy.ibtkarchallenge.data.api
 
+import com.meslmawy.ibtkarchallenge.BuildConfig
 import com.meslmawy.ibtkarchallenge.domain.dto.ActorDetails
 import com.meslmawy.ibtkarchallenge.domain.dto.AllImagesResponse
 import com.meslmawy.ibtkarchallenge.domain.dto.AllPeopleResponse
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 interface ChallengeApiService {
 
 
-    @GET("popular?api_key=c07cbf1aeb56336a94a6c998fdee50c6")
+    @GET("popular?api_key=" + BuildConfig.API_KEY)
     suspend fun getAllPeople(): Response<AllPeopleResponse>
 
-    @GET("{person_id}?api_key=c07cbf1aeb56336a94a6c998fdee50c6&language=en-US")
+    @GET("{person_id}?api_key=" + BuildConfig.API_KEY + "&language=en-US")
     suspend fun getPersonInfo(@Path(value = "person_id") personId : Int): Response<ActorDetails>
 
-    @GET("{person_id}/images?api_key=c07cbf1aeb56336a94a6c998fdee50c6&language=en-US")
+    @GET("{person_id}/images?api_key=" + BuildConfig.API_KEY +"&language=en-US")
     suspend fun getPersonImages(@Path(value = "person_id") personId : Int): Response<AllImagesResponse>
 
-    @GET("popular?api_key=c07cbf1aeb56336a94a6c998fdee50c6")
+    @GET("popular?api_key=" + BuildConfig.API_KEY)
     fun getAllPeopleTest(): Call<AllPeopleResponse>
 
-    @GET("{person_id}?api_key=c07cbf1aeb56336a94a6c998fdee50c6&language=en-US")
+    @GET("{person_id}?api_key=" + BuildConfig.API_KEY + "&language=en-US")
     fun getPersonInfoTest(@Path(value = "person_id") personId : Int): Call<ActorDetails>
 
-    @GET("{person_id}/images?api_key=c07cbf1aeb56336a94a6c998fdee50c6&language=en-US")
+    @GET("{person_id}/images?api_key=" +  BuildConfig.API_KEY + "&language=en-US")
     fun getPersonImagesTest(@Path(value = "person_id") personId : Int): Call<AllImagesResponse>
 
     companion object {
