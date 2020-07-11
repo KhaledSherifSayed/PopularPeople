@@ -159,9 +159,10 @@ class PhotoFragment : Fragment() {
             viewModel.image_saved()
             context?.let { scanFile(it, Uri.fromFile(direct)) }
         } catch (e: FileNotFoundException) {
-
+            Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
             e.printStackTrace()
         } catch (e: IOException) {
+            Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
             e.printStackTrace()
         }
     }

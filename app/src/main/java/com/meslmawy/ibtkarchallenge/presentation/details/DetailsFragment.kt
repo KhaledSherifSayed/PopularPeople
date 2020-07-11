@@ -125,7 +125,6 @@ class DetailsFragment : Fragment() {
         binding.moviesPicker.adapter = moviesAdapter
         binding.moviesPicker.setItemTransitionTimeMillis(500)
         binding.moviesPicker.setItemTransformer(ScaleTransformer.Builder().setMinScale(0.8f).build())
-
         imagesAdapter = ImagesAdapter(ImageClick{ it, view ->
             val extraInfoForSharedElement = FragmentNavigatorExtras(
                 (view to it.real_path) as Pair<View, String>

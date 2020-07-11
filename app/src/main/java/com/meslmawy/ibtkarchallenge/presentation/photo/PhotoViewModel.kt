@@ -16,17 +16,13 @@ class PhotoViewModel(val repository: ChallengeRepositery) : ViewModel() {
     private val _imageFound = MutableLiveData<Boolean>()
     val imageFound: LiveData<Boolean>
         get() = _imageFound
-
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
 
-    // the Coroutine runs using the Main (UI) dispatcher
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     fun checkImageFound(fileName: String) {
         checkFolderExist()
-        val direct = File(
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString()
+        val direct = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString()
                     + File.separator +
                     "PopularImagesWallper"
                     + File.separator + fileName
@@ -45,8 +41,7 @@ class PhotoViewModel(val repository: ChallengeRepositery) : ViewModel() {
     }
 
     fun deleteImage(fileName: String) {
-        val direct = File(
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString()
+        val direct = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString()
                     + File.separator +
                     "PopularImagesWallper"
                     + File.separator + fileName
