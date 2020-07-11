@@ -29,5 +29,7 @@
     <string name="images_list">Images List</string>
     <string name="storage_perm_msg">Please enable Storage Permission to enable to save Images </string>
     <string name="request">Request</string>
+    <string name="image_saved">image saved in your Phone</string>
+    <string name="image_deleted">image deleted from your Phone</string>
 
 </resources>

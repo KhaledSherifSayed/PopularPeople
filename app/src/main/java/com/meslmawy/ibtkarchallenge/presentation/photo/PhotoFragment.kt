@@ -45,6 +45,7 @@ import com.meslmawy.ibtkarchallenge.MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAG
 import com.meslmawy.ibtkarchallenge.R
 import com.meslmawy.ibtkarchallenge.databinding.FragmentPhotoBinding
 import com.meslmawy.ibtkarchallenge.domain.dto.PersonImage
+import com.meslmawy.ibtkarchallenge.presentation.MainActivity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -80,7 +81,7 @@ class PhotoFragment : Fragment() {
             if (checkPermission()) {
                 if (viewModel.imageFound.value!!) {
                     ImageRecieved!!.file_path?.let { it1 -> viewModel.deleteImage(it1) }
-                    Toast.makeText(context,"image deleted from your Phone",Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,getString(R.string.image_deleted),Toast.LENGTH_LONG).show()
                 }
                 else {
                     binding.personImageView.buildDrawingCache()
@@ -122,9 +123,11 @@ class PhotoFragment : Fragment() {
         binding.apply {
             this.image = ImageRecieved
         }
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.photoToolbar)
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setTitle(args.name)
+        if(requireActivity() is MainActivity){
+            (activity as AppCompatActivity?)!!.setSupportActionBar(binding.photoToolbar)
+            (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            (activity as AppCompatActivity?)!!.supportActionBar!!.setTitle(args.name)
+        }
     }
 
     private fun setSharedElementTransitionOnEnter() {
@@ -177,7 +180,7 @@ class PhotoFragment : Fragment() {
             val fos = FileOutputStream(direct)
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos)
             fos.close()
-            Toast.makeText(context,"image saved in your Phone",Toast.LENGTH_LONG).show()
+            Toast.makeText(context,getString(R.string.image_saved),Toast.LENGTH_LONG).show()
             viewModel.image_saved()
             context?.let { scanFile(it, Uri.fromFile(direct)) }
         } catch (e: FileNotFoundException) {
